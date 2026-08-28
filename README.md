@@ -1,142 +1,155 @@
 # My Office Intern
 
-A governed AI email workflow system designed to explore safe automation, validation, and human-in-the-loop operations.
+### Governed AI for repetitive operational email intake
 
-The system combines AI-assisted draft generation with validation, governance, workflow routing, and human review controls to support safer email operations.
+My Office Intern explores a practical question:
 
-## Features
+> Can a company reduce the time employees spend answering repetitive emails without creating new operational problems?
 
-Current capabilities include:
+The system uses an LLM to understand inconsistent customer language inside a tightly governed workflow. Deterministic code controls routing, approved wording, validation, and automation eligibility. Human operators retain authority over investigation and consequential decisions.
 
-- Reading customer emails from Gmail in read-only mode
-- Classifying incoming emails
-- Generating AI-assisted draft responses
-- Validating drafts against operational rules
-- Routing emails through governed workflows
-- Supporting human review and approval workflows
-- Determining automation eligibility
-- Tracking operational metrics and outcomes
-- Maintaining workflow state and audit history
-- Managing email queues for testing and review
+Parking-management inquiries are the first proving ground. The larger goal is a reusable governed-intake pattern for industries that depend on high-volume email correspondence but cannot accept unpredictable AI responses.
 
----
+> **Showcase repository:** This public repository documents the product thesis, architecture, evaluation approach, and selected results. The production source code, prompts, credentials, customer data, and operational rule set are intentionally not included.
 
-## Architecture
+## The operating principle
 
-```text
-Customer Email
-        ↓
- Classification
-(What type of email is this?)
-        ↓
- Draft Generation
-(Create a proposed response)
-        ↓
- Validation
-(Did the draft violate rules?)
-        ↓
- Governance
-(Is automation allowed?)
-        ↓
- ┌───────────────┴───────────────┐
- ↓                               ↓
+| Layer | Responsibility |
+|---|---|
+| LLM | Understand messy email language, extract supporting facts, summarize intent, and identify missing information |
+| Deterministic code | Validate extraction, enforce workflow rules, select approved wording, and gate automation |
+| Operator | Investigate external company systems, approve consequential actions, and handle unsupported or uncertain cases |
 
-Human Review                 Auto Ready
-(Person approves)            (Eligible for automation)
-        ↓                               ↓
-       Sent                           Sent
-```
-## Tech Stack
+The LLM is an analyst—not the decision-maker.
 
-- Python backend
-- Vanilla JavaScript frontend
-- SQLite persistence
-- Gmail IMAP (read-only)
-- Ollama for local AI inference
+## Current operational slice
 
-## Gmail setup
+The initial capability handles parking-violation intake:
 
-1. Enable 2-Step Verification on your Google account.
-2. Create a Gmail app password for this project.
-3. Copy `.env.example` to `.env`.
-4. Fill in your credentials:
+1. Read an incoming customer email.
+2. Determine whether it belongs to the supported parking-violation workflow.
+3. Extract evidence-backed information without inventing facts.
+4. Determine whether the message is a first contact or an ongoing interaction.
+5. Route the request using deterministic rules.
+6. Use approved wording when a safe information request is appropriate.
+7. Preserve human control whenever research, uncertainty, or an unsupported workflow is involved.
 
-```bash
-GMAIL_ADDRESS=youraddress@gmail.com
-GMAIL_APP_PASSWORD=your-app-password
+```mermaid
+flowchart TD
+    A[Incoming customer email] --> B[LLM extracts intent and supporting facts]
+    B --> C{Schema and evidence valid?}
+    C -- No --> N[Human Review Needed]
+    C -- Yes --> D{Supported workflow?}
+    D -- No --> N
+    D -- Yes --> E{Prior contact or research-ready identifier?}
+    E -- Yes --> H[Human Review Assisted]
+    E -- No --> F{Information still missing?}
+    F -- Yes --> T[Approved information-request template]
+    F -- No --> H
+    T --> G[Operator-controlled workflow]
+    H --> G
+    N --> G
 ```
 
-Do not commit `.env`. It is ignored by Git.
+## Governed outcomes
 
----
+### Template Auto Ready
 
-## Run the system
+Used for supported first-contact cases that lack enough information for an operator to investigate. Code assembles a pre-approved response and requests only information that has not already been supplied.
 
-### 1. Start backend (Terminal 1)
+### Human Review Assisted
 
-```bash
-python3 backend.py
-```
+Used when an operator has enough information to research the matter, when prior correspondence exists, or when the workflow should prepare an operator brief rather than a customer-facing response.
 
-It starts at:
+### Human Review Needed
 
-```text
-http://127.0.0.1:8000
-```
+Used for malformed or uncertain extraction, unsupported use cases, and messages that do not safely fit the current operational slice.
 
----
+## What the system deliberately does not do
 
-### 2. Start frontend server (Terminal 2)
+- It does not decide whether a violation is valid.
+- It does not claim to have checked an external company database.
+- It does not waive fees, approve appeals, or resolve disputes.
+- It does not allow emotional or legal language alone to dictate routing.
+- It does not ask customers for evidence they already supplied.
+- It does not allow the model to freely compose automatic customer responses.
 
-```bash
-python3 -m http.server 5500
-```
+## Evaluation evidence
 
----
+### Preliminary engineering benchmark
 
-### 3. Open in browser
+A 20-case labeled engineering benchmark produced:
 
-```text
-http://127.0.0.1:5500/index.html
-```
+| Metric | Result |
+|---|---:|
+| Exact-case accuracy | 95.0% |
+| Route accuracy | 100.0% |
+| Extraction-field accuracy | 99.17% |
+| Auto-ready precision | 100.0% |
+| Eligible automation coverage | 100.0% |
+| False auto-ready outcomes | 0 |
 
-## API
+These figures are a preliminary engineering baseline—not a production accuracy claim. The labels remain subject to parking-operations owner approval, and the benchmark must be expanded and repeated before deployment decisions are made.
 
-Check that the backend is running:
+### Operational stress run
 
-```bash
-curl http://127.0.0.1:8000/health
-```
+A separate 66-email run demonstrated meaningful routing separation:
 
-Read unread email previews:
+- 23 approved information-request templates
+- 9 Human Review Assisted outcomes
+- 34 Human Review Needed outcomes
+- No non-violation classification received an automatic template
+- Every plausible violation number was routed to an operator
 
-```bash
-curl http://127.0.0.1:8000/unread-subjects
-```
+This run was used to discover edge cases; because it did not contain independently approved gold labels, it is not presented as an accuracy score.
 
-Optionally limit the number of subjects:
+Read the [evaluation methodology](docs/evaluation-methodology.md) and the updated [case study](Olamide-Aborowa_Building-a-95-Accurate-AI-Email-Responder_Case-Study.md).
 
-```bash
-curl "http://127.0.0.1:8000/unread-subjects?limit=10"
-```
+## Why this pattern matters beyond parking
 
-Example response:
+The same architecture can support narrowly defined intake workflows such as:
 
-```json
-{
-  "emails": [
-    {
-      "id": "42",
-      "sender": "Alex Lee <alex@example.com>",
-      "subject": "Question about the onboarding checklist",
-      "date": "Mon, 27 Apr 2026 10:15:00 -0500",
-      "dateIso": "2026-04-27T15:15:00+00:00",
-      "preview": "Could you review the onboarding checklist before Friday?"
-    }
-  ]
-}
-```
+- Insurance claim intake
+- Maintenance and repair requests
+- Billing inquiries
+- Warranty claims
+- Human-resources service requests
+- Property-management correspondence
 
-## Use the frontend
+Each organization supplies its own supported use cases, required facts, approved templates, escalation rules, and human decision boundaries. The reusable product is the governed workflow—not a universal AI reply generator.
 
-Open `index.html` in a browser after starting the backend. Click **Refresh Inbox** to load unread emails from Gmail, then select one before generating a draft.
+## Product status
+
+The project is currently a working local prototype and evaluation environment. Current work focuses on:
+
+- Operations-approved evaluation labels
+- Larger and more adversarial test sets
+- Repeatability across multiple model runs
+- Latency and throughput improvements
+- Operator-interface clarity
+- Auditability and measurable trust
+- Careful expansion into one additional workflow at a time
+
+## Technology overview
+
+- Python application backend
+- Schema-constrained local LLM extraction
+- Deterministic routing and validation
+- Vanilla JavaScript operator interface
+- SQLite workflow state and audit history
+- Read-only email intake integration
+
+Implementation details are intentionally omitted from this public showcase.
+
+## Project materials
+
+- [Updated case study](Olamide-Aborowa_Building-a-95-Accurate-AI-Email-Responder_Case-Study.md)
+- [Evaluation methodology](docs/evaluation-methodology.md)
+- [Governance model](docs/governance-model.md)
+- [Earlier architecture exploration — June 2026](Governed%20AI%20Email%20Workflow%20Architecture.png)
+
+## Author
+
+**Olamide Aborowa, MBA, PMP, PSM**
+
+Product strategy, workflow architecture, governance design, implementation, and evaluation.
