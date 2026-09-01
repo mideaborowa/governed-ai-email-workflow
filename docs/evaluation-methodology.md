@@ -13,7 +13,7 @@ Each case contains an anonymized customer email and an expected set of operation
 - Research-ready identifier status
 - Evidence supplied
 - Missing information
-- Expected workflow route
+- Expected operational handling
 - Expected automatic-template eligibility
 
 The expected labels should ultimately be approved by an owner of the real operational process.
@@ -28,11 +28,12 @@ This is intentionally strict. A case with a correct route but an incorrect evide
 
 ### Route accuracy
 
-The percentage of cases routed to the expected operational outcome:
+The percentage of cases routed to the expected operational handling:
 
 - Template Auto Ready
-- Human Review Assisted
-- Human Review Needed
+- Human Review
+
+The interface may distinguish between review cases with or without an AI-prepared operator brief. That distinction can be useful to the operator, but it is not a separate pass-or-fail routing label in the current evaluation.
 
 ### Extraction-field accuracy
 
@@ -75,20 +76,25 @@ Evaluation progresses through increasingly realistic stages:
 7. Shadow-mode deployment with no automatic sending
 8. Narrow production pilot with monitoring and rollback controls
 
-## Current evidence
+## Current regression evaluation
 
-The current preliminary 20-case engineering benchmark reports:
+The current evaluation uses a fixed 100-email regression set. Each case has a permanent case number, saved email content, and an expected handling decision owned by operations. This allows the same cases to be rerun even when the Gmail inbox changes.
+
+The first verified comparison was completed on September 1, 2026:
 
 | Metric | Result |
 |---|---:|
-| Exact-case accuracy | 95.0% |
-| Route accuracy | 100.0% |
-| Extraction-field accuracy | 99.17% |
-| Auto-ready precision | 100.0% |
-| Eligible automation coverage | 100.0% |
-| False auto-ready outcomes | 0 |
+| Fixed cases | 100 |
+| Correct routes | 86 |
+| Route accuracy | 86.0% |
+| Auto-ready precision | 91.2% |
+| Eligible automation coverage | 88.6% |
+| False auto-ready outcomes | 6 |
+| Unnecessary human reviews | 8 |
 
-These numbers are promising engineering evidence. They are not yet a statistically supported production claim because the fixture is small and its labels are pending independent operational approval.
+The rerun contained all 100 fixed cases with no missing, additional, or changed emails. Each mismatch was reviewed against the operations-owned answer key. These results establish a controlled correction baseline; they are not a production-performance claim.
+
+New inbox batches are tested separately and can be preserved as future named sets. Earlier exploratory tests informed the current design but are not presented as current performance.
 
 ## Release standard
 

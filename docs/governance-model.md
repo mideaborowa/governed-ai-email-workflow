@@ -24,13 +24,11 @@ The LLM may observe, extract, summarize, and classify. Deterministic code decide
 
 The message belongs to the supported workflow, appears to be a first contact, lacks enough information for investigation, and passes deterministic safety checks. Code constructs the response using approved language and requests only missing information.
 
-### Human Review Assisted
+### Human Review
 
-The message contains enough information for operator research, refers to prior correspondence, or benefits from an evidence-backed operator brief.
+The operator retains the case when enough information exists for research, prior correspondence is involved, extraction is uncertain, or the message falls outside the supported automated path.
 
-### Human Review Needed
-
-The message is unsupported, unclear, malformed, or insufficiently reliable for the approved automated path.
+The interface may indicate whether an evidence-backed operator brief is available. That assistance state does not change the governing decision: the case remains under human control.
 
 ## Fail-closed behavior
 
