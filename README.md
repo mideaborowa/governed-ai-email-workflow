@@ -10,7 +10,7 @@ The system uses an LLM to understand inconsistent customer language inside a tig
 
 Parking-management inquiries are the first proving ground. The larger goal is a reusable governed-intake pattern for industries that depend on high-volume email correspondence but cannot accept unpredictable AI responses.
 
-> **Showcase repository:** This public repository documents the product thesis, architecture, evaluation approach, and selected results. The production source code, prompts, credentials, customer data, and operational rule set are intentionally not included.
+> **Showcase repository:** This public repository documents the product thesis, architecture, evaluation approach, and selected results. Private implementation code, prompts, credentials, customer data, and detailed operational rules are intentionally not included.
 
 ## The operating principle
 
@@ -38,17 +38,16 @@ The initial capability handles parking-violation intake:
 flowchart TD
     A[Incoming customer email] --> B[LLM extracts intent and supporting facts]
     B --> C{Schema and evidence valid?}
-    C -- No --> N[Human Review Needed]
+    C -- No --> H[Human Review]
     C -- Yes --> D{Supported workflow?}
-    D -- No --> N
+    D -- No --> H
     D -- Yes --> E{Prior contact or research-ready identifier?}
-    E -- Yes --> H[Human Review Assisted]
+    E -- Yes --> H
     E -- No --> F{Information still missing?}
     F -- Yes --> T[Approved information-request template]
     F -- No --> H
     T --> G[Operator-controlled workflow]
     H --> G
-    N --> G
 ```
 
 ## Governed outcomes
@@ -57,13 +56,9 @@ flowchart TD
 
 Used for supported first-contact cases that lack enough information for an operator to investigate. Code assembles a pre-approved response and requests only information that has not already been supplied.
 
-### Human Review Assisted
+### Human Review
 
-Used when an operator has enough information to research the matter, when prior correspondence exists, or when the workflow should prepare an operator brief rather than a customer-facing response.
-
-### Human Review Needed
-
-Used for malformed or uncertain extraction, unsupported use cases, and messages that do not safely fit the current operational slice.
+Used whenever an operator should retain the case: enough information exists for research, prior correspondence is involved, extraction is uncertain, or the message falls outside the supported automated path. The interface may indicate whether an operator brief is available, but the evaluation standard treats all such cases as Human Review.
 
 ## What the system deliberately does not do
 
@@ -76,34 +71,22 @@ Used for malformed or uncertain extraction, unsupported use cases, and messages 
 
 ## Evaluation evidence
 
-### Preliminary engineering benchmark
+The current process uses a fixed 100-email regression set with permanent case numbers, saved email content, and an operations-owned answer key. The same cases can be replayed independently of mailbox changes, while new inbox batches remain available for exploration. The interface reports batch progress during testing.
 
-A 20-case labeled engineering benchmark produced:
+### Verified regression baseline — September 1, 2026
 
 | Metric | Result |
 |---|---:|
-| Exact-case accuracy | 95.0% |
-| Route accuracy | 100.0% |
-| Extraction-field accuracy | 99.17% |
-| Auto-ready precision | 100.0% |
-| Eligible automation coverage | 100.0% |
-| False auto-ready outcomes | 0 |
+| Fixed cases | 100 |
+| Route accuracy | 86.0% |
+| Auto-ready precision | 91.2% |
+| Eligible automation coverage | 88.6% |
+| False auto-ready outcomes | 6 |
+| Unnecessary human reviews | 8 |
 
-These figures are a preliminary engineering baseline—not a production accuracy claim. The labels remain subject to parking-operations owner approval, and the benchmark must be expanded and repeated before deployment decisions are made.
+All 100 rerun cases matched the fixed test collection, and every routing mismatch was reviewed against the saved email and operations-owned answer key. This is a controlled regression baseline—not a production-performance claim. Earlier exploratory tests were used to identify failure modes and are not presented as current performance.
 
-### Operational stress run
-
-A separate 66-email run demonstrated meaningful routing separation:
-
-- 23 approved information-request templates
-- 9 Human Review Assisted outcomes
-- 34 Human Review Needed outcomes
-- No non-violation classification received an automatic template
-- Every plausible violation number was routed to an operator
-
-This run was used to discover edge cases; because it did not contain independently approved gold labels, it is not presented as an accuracy score.
-
-Read the [evaluation methodology](docs/evaluation-methodology.md) and the updated [case study](Olamide-Aborowa_Building-a-95-Accurate-AI-Email-Responder_Case-Study.md).
+Read the [evaluation methodology](docs/evaluation-methodology.md) and the updated [case study](governed-ai-email-intake-case-study.md).
 
 ## Why this pattern matters beyond parking
 
@@ -122,8 +105,9 @@ Each organization supplies its own supported use cases, required facts, approved
 
 The project is currently a working local prototype and evaluation environment. Current work focuses on:
 
-- Operations-approved evaluation labels
-- Larger and more adversarial test sets
+- Reducing false auto-ready outcomes toward zero
+- Raising auto-ready precision and route accuracy above 95%
+- Improving automation coverage without reducing precision
 - Repeatability across multiple model runs
 - Latency and throughput improvements
 - Operator-interface clarity
@@ -143,10 +127,9 @@ Implementation details are intentionally omitted from this public showcase.
 
 ## Project materials
 
-- [Updated case study](Olamide-Aborowa_Building-a-95-Accurate-AI-Email-Responder_Case-Study.md)
+- [Case study](governed-ai-email-intake-case-study.md)
 - [Evaluation methodology](docs/evaluation-methodology.md)
 - [Governance model](docs/governance-model.md)
-- [Earlier architecture exploration — June 2026](Governed%20AI%20Email%20Workflow%20Architecture.png)
 
 ## Author
 
