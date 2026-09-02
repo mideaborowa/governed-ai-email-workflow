@@ -100,7 +100,7 @@ Early synthetic and exploratory tests helped expose failure modes, but they are 
 
 The evaluation process has since moved to a fixed 100-email regression set with permanent case numbers, saved email content, and an operations-owned answer key. This prevents the test population from changing as the inbox changes. The system can replay named regression sets, test new inbox batches separately, and show progress while a batch runs.
 
-The first verified comparison, completed September 1, 2026, produced 86.0% route accuracy, 91.2% auto-ready precision, and 88.6% eligible automation coverage. Six cases were incorrectly made auto-ready, and eight eligible cases were unnecessarily retained for human review. This controlled baseline is not a production-performance claim; it identifies exactly where the system-correction phase must begin.
+The September 2026 evaluation of workflow version 1.3 produced 96.0% route accuracy, 100.0% auto-ready precision, and 94.2% eligible automation coverage on the fixed 100-email regression set. There were no false auto-ready outcomes. The four remaining errors were conservative human-review escalations. This is a controlled regression result, not a production-performance claim.
 
 ## The most important lesson
 
@@ -126,10 +126,10 @@ The product is being built one highly reliable operational slice at a time.
 
 ## Current priorities
 
-1. Reduce false auto-ready outcomes toward zero.
-2. Raise auto-ready precision above 95%.
-3. Raise route accuracy above 95%.
-4. Improve automation coverage without reducing precision.
+1. Preserve zero false auto-ready outcomes.
+2. Confirm performance across repeated and fresh email collections.
+3. Improve automation coverage without reducing precision.
+4. Reduce unnecessary human review without weakening safety.
 5. Measure repeatability across multiple runs.
 6. Improve local inference latency, throughput, and operator experience.
 7. Add new industry workflows only after the current slice is demonstrably trustworthy.
