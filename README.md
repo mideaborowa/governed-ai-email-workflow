@@ -73,18 +73,19 @@ Used whenever an operator should retain the case: enough information exists for 
 
 The current process uses a fixed 100-email regression set with permanent case numbers, saved email content, and an operations-owned answer key. The same cases can be replayed independently of mailbox changes, while new inbox batches remain available for exploration. The interface reports batch progress during testing.
 
-### Verified regression baseline — September 1, 2026
+### Verified regression milestone — September 2026
 
 | Metric | Result |
 |---|---:|
 | Fixed cases | 100 |
-| Route accuracy | 86.0% |
-| Auto-ready precision | 91.2% |
-| Eligible automation coverage | 88.6% |
-| False auto-ready outcomes | 6 |
-| Unnecessary human reviews | 8 |
+| Correct routes | 96 |
+| Route accuracy | 96.0% |
+| Auto-ready precision | 100.0% |
+| Eligible automation coverage | 94.2% |
+| False auto-ready outcomes | 0 |
+| Unnecessary human reviews | 4 |
 
-All 100 rerun cases matched the fixed test collection, and every routing mismatch was reviewed against the saved email and operations-owned answer key. This is a controlled regression baseline—not a production-performance claim. Earlier exploratory tests were used to identify failure modes and are not presented as current performance.
+Workflow version 1.3 was evaluated against the exact fixed collection and operations-owned answer key. All four remaining errors were conservative human-review escalations; no human-review case was incorrectly automated. This is a controlled regression result—not a production-performance claim.
 
 Read the [evaluation methodology](docs/evaluation-methodology.md) and the updated [case study](governed-ai-email-intake-case-study.md).
 
@@ -105,10 +106,9 @@ Each organization supplies its own supported use cases, required facts, approved
 
 The project is currently a working local prototype and evaluation environment. Current work focuses on:
 
-- Reducing false auto-ready outcomes toward zero
-- Raising auto-ready precision and route accuracy above 95%
+- Preserving zero false auto-ready outcomes
+- Testing repeatability and performance on fresh email collections
 - Improving automation coverage without reducing precision
-- Repeatability across multiple model runs
 - Latency and throughput improvements
 - Operator-interface clarity
 - Auditability and measurable trust
