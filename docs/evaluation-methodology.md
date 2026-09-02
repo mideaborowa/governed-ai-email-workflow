@@ -80,19 +80,19 @@ Evaluation progresses through increasingly realistic stages:
 
 The current evaluation uses a fixed 100-email regression set. Each case has a permanent case number, saved email content, and an expected handling decision owned by operations. This allows the same cases to be rerun even when the Gmail inbox changes.
 
-The first verified comparison was completed on September 1, 2026:
+The current verified regression milestone was completed in September 2026:
 
 | Metric | Result |
 |---|---:|
 | Fixed cases | 100 |
-| Correct routes | 86 |
-| Route accuracy | 86.0% |
-| Auto-ready precision | 91.2% |
-| Eligible automation coverage | 88.6% |
-| False auto-ready outcomes | 6 |
-| Unnecessary human reviews | 8 |
+| Correct routes | 96 |
+| Route accuracy | 96.0% |
+| Auto-ready precision | 100.0% |
+| Eligible automation coverage | 94.2% |
+| False auto-ready outcomes | 0 |
+| Unnecessary human reviews | 4 |
 
-The rerun contained all 100 fixed cases with no missing, additional, or changed emails. Each mismatch was reviewed against the operations-owned answer key. These results establish a controlled correction baseline; they are not a production-performance claim.
+Workflow version 1.3 was evaluated against all 100 fixed cases with no missing, additional, or changed emails. Every mismatch was reviewed against the operations-owned answer key. All four remaining errors were conservative human-review escalations. This is a controlled regression result, not a production-performance claim.
 
 New inbox batches are tested separately and can be preserved as future named sets. Earlier exploratory tests informed the current design but are not presented as current performance.
 
