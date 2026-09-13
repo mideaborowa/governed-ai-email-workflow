@@ -1,26 +1,34 @@
 # My Office Intern
 
-### Governed AI for repetitive operational email intake
+## An evaluation-backed governed AI operations system
 
-My Office Intern explores a practical question:
+My Office Intern is a working prototype designed to reduce repetitive email handling without giving AI authority to make business decisions or freely write customer responses.
 
-> Can a company reduce the time employees spend answering repetitive emails without creating new operational problems?
+It reads inconsistent customer messages, identifies what information is present or missing, prepares an approved information request only when automation is safe, and routes everything requiring investigation or judgment to a person.
 
-The system uses an LLM to understand inconsistent customer language inside a tightly governed workflow. Deterministic code controls routing, approved wording, validation, and automation eligibility. Human operators retain authority over investigation and consequential decisions.
+Parking management is the first proving ground. The underlying workflow is intended for other high-volume intake operations that need the efficiency of AI without unpredictable customer communication.
 
-Parking-management inquiries are the first proving ground. The larger goal is a reusable governed-intake pattern for industries that depend on high-volume email correspondence but cannot accept unpredictable AI responses.
+### Verified 100-email regression milestone
 
-> **Showcase repository:** This public repository documents the product thesis, architecture, evaluation approach, and selected results. Private implementation code, prompts, credentials, customer data, and detailed operational rules are intentionally not included.
+- **96 of 100** emails were sent to the correct workflow.
+- **100% precision** among emails approved for an automated response.
+- **Zero** cases requiring human review were incorrectly approved for automation.
 
-## The operating principle
+This is a controlled regression result, not a production-performance claim.
 
-| Layer | Responsibility |
+## How it works
+
+| Responsibility | What happens |
 |---|---|
-| LLM | Understand messy email language, extract supporting facts, summarize intent, and identify missing information |
-| Deterministic code | Validate extraction, enforce workflow rules, select approved wording, and gate automation |
-| Operator | Investigate external company systems, approve consequential actions, and handle unsupported or uncertain cases |
+| AI understands | Interprets inconsistent language and extracts evidence-backed information |
+| Rules control | Validate the extraction, determine what may be automated, and select approved wording |
+| People decide | Investigate company records, exercise judgment, and make consequential decisions |
 
-The LLM is an analyst—not the decision-maker.
+In plain terms: **AI understands. Rules verify and control. People investigate and decide.**
+
+### A simple example
+
+If a first-contact email does not provide enough information to locate and investigate the matter, the system prepares an approved response requesting only the missing information. If the message is research-ready, uncertain, part of an existing interaction, or outside the supported workflow, it goes to Human Review.
 
 ## Current operational slice
 
@@ -52,9 +60,9 @@ flowchart TD
 
 ## Governed outcomes
 
-### Template Auto Ready
+### Approved information request
 
-Used for supported first-contact cases that lack enough information for an operator to investigate. Code assembles a pre-approved response and requests only information that has not already been supplied.
+The system labels this outcome **Template Auto Ready**. It is used for supported first-contact cases that lack enough information for an operator to investigate. Code assembles a pre-approved response and requests only information that has not already been supplied.
 
 ### Human Review
 
@@ -73,7 +81,7 @@ Used whenever an operator should retain the case: enough information exists for 
 
 The current process uses a fixed 100-email regression set with permanent case numbers, saved email content, and an operations-owned answer key. The same cases can be replayed independently of mailbox changes, while new inbox batches remain available for exploration. The interface reports batch progress during testing.
 
-### Verified regression milestone — September 2026
+### Verified regression milestone: September 2026
 
 | Metric | Result |
 |---|---:|
@@ -85,7 +93,7 @@ The current process uses a fixed 100-email regression set with permanent case nu
 | False auto-ready outcomes | 0 |
 | Unnecessary human reviews | 4 |
 
-Workflow version 1.3 was evaluated against the exact fixed collection and operations-owned answer key. All four remaining errors were conservative human-review escalations; no human-review case was incorrectly automated. This is a controlled regression result—not a production-performance claim.
+Workflow version 1.3 was evaluated against the exact fixed collection and operations-owned answer key. All four remaining errors were conservative human-review escalations; no human-review case was incorrectly automated.
 
 Read the [evaluation methodology](docs/evaluation-methodology.md) and the updated [case study](governed-ai-email-intake-case-study.md).
 
@@ -100,7 +108,7 @@ The same architecture can support narrowly defined intake workflows such as:
 - Human-resources service requests
 - Property-management correspondence
 
-Each organization supplies its own supported use cases, required facts, approved templates, escalation rules, and human decision boundaries. The reusable product is the governed workflow—not a universal AI reply generator.
+Each organization supplies its own supported use cases, required facts, approved templates, escalation rules, and human decision boundaries. The reusable product is the governed workflow, not a universal AI reply generator.
 
 ## Product status
 
@@ -123,13 +131,15 @@ The project is currently a working local prototype and evaluation environment. C
 - SQLite workflow state and audit history
 - Read-only email intake integration
 
-Implementation details are intentionally omitted from this public showcase.
-
 ## Project materials
 
 - [Case study](governed-ai-email-intake-case-study.md)
 - [Evaluation methodology](docs/evaluation-methodology.md)
 - [Governance model](docs/governance-model.md)
+
+## Public repository scope
+
+This repository documents the system's purpose, architecture, evaluation approach, and selected verified results. Private implementation code, prompts, credentials, customer data, detailed operational rules, and raw test materials are intentionally not included.
 
 ## Author
 
