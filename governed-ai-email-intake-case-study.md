@@ -106,6 +106,19 @@ The evaluation process has since moved to a fixed 100-email regression set with 
 
 The September 2026 evaluation of workflow version 1.3 produced 96.0% route accuracy, 100.0% auto-ready precision, and 94.2% eligible automation coverage on the fixed 100-email regression set. There were no false auto-ready outcomes. The four remaining errors were conservative human-review escalations. This is a controlled regression result, not a production-performance claim.
 
+Testing then expanded to a combined 300-case evaluation: the fixed 100-email
+regression set plus a separate 200-case holdout set. Workflow version 1.14
+achieved 97.3% route accuracy, 97.2% auto-ready precision, and 98.3% eligible
+automation coverage. It also produced five false auto-ready outcomes and three
+unnecessary Human Review routes.
+
+That result was valuable precisely because it was imperfect. The broader set
+revealed a new failure layer that the smaller regression milestone did not. The
+five false-auto cases were treated as safety failures and used to refine the
+next workflow version. Version 1.15 has not yet received a full 300-case rerun,
+so the result is reported as a dated evaluation milestone, not as current
+production performance.
+
 ## The most important lesson
 
 LLMs are easier to use for extraction than to govern as writers.

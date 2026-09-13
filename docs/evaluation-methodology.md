@@ -94,6 +94,29 @@ The current verified regression milestone was completed in September 2026:
 
 Workflow version 1.3 was evaluated against all 100 fixed cases with no missing, additional, or changed emails. Every mismatch was reviewed against the operations-owned answer key. All four remaining errors were conservative human-review escalations. This is a controlled regression result, not a production-performance claim.
 
+## Broader 300-case evaluation
+
+The next stage combined the fixed 100-email regression set with a separate
+200-case holdout set. Both collections retained fixed case content and
+operations-owned handling decisions.
+
+| Metric | Result |
+|---|---:|
+| Fixed cases | 300 |
+| Correct routes | 292 |
+| Route accuracy | 97.3% |
+| Auto-ready precision | 97.2% |
+| Eligible automation coverage | 98.3% |
+| False auto-ready outcomes | 5 |
+| Unnecessary human reviews | 3 |
+| Processing failures | 0 |
+
+Workflow version 1.14 produced this result in September 2026. The five false
+auto-ready outcomes failed the project's safety priority despite the higher
+overall route accuracy. They informed version 1.15 refinements. Because version
+1.15 has not yet been rerun against all 300 cases, this remains a historical
+evaluation result rather than a current-version performance claim.
+
 New inbox batches are tested separately and can be preserved as future named sets. Earlier exploratory tests informed the current design but are not presented as current performance.
 
 ## Release standard

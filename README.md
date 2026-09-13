@@ -19,7 +19,9 @@ is a reusable governed intake approach for organizations that want meaningful
 automation without allowing AI to become an uncontrolled company
 representative.
 
-## Verified milestone
+## Verified milestones
+
+### Fixed 100-email regression
 
 | **96.0%** | **100.0%** | **0** |
 |:---:|:---:|:---:|
@@ -31,6 +33,19 @@ remaining errors were conservative Human Review escalations; no Human Review
 case was approved for template automation.
 
 This is a controlled regression result, not a production-performance claim.
+
+### Broader 300-case evaluation
+
+A later evaluation tested workflow version 1.14 against the fixed 100-email
+regression set plus a separate 200-case holdout set. It achieved **97.3% route
+accuracy** and **97.2% auto-ready precision**, but it also produced **five false
+auto-ready outcomes** and three unnecessary Human Review routes.
+
+The higher overall accuracy did not make those five safety errors acceptable.
+They exposed another failure layer and directly informed the next workflow
+refinement. Version 1.15 has not yet been rerun against the full 300 cases, so
+this result is preserved as a transparent historical milestone rather than a
+claim about current performance.
 
 ## Why this matters
 
