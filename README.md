@@ -10,7 +10,7 @@ Parking management is the first proving ground. The underlying workflow is inten
 
 ### Verified 100-email regression milestone
 
-- **96 of 100** emails were routed to the correct workflow.
+- **96 of 100** emails received the correct handling decision.
 - **100% auto-ready precision:** every email approved for an information-request template matched the operations-owned answer key.
 - **Zero false automations:** no Human Review case was incorrectly approved for automation.
 
