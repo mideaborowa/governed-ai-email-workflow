@@ -1,6 +1,6 @@
 # When AI Wasn't the Hard Part
 
-## Building toward a 95%-accurate governed email-intake workflow
+## Building a governed AI operations system for repetitive email intake
 
 **Olamide Aborowa, MBA, PMP, PSM**
 
@@ -14,11 +14,11 @@ The writing is repetitive. Understanding the customer is not.
 
 Customers omit facts, describe the wrong part of the problem, write emotionally, reference earlier interactions, attach partial evidence, or use language that does not match internal terminology. A useful system must handle that variation without inventing facts or surrendering operational control.
 
-The product question became:
+The operational question became:
 
 > Can this reduce time spent answering repetitive emails without creating new problems?
 
-The practical ambition is for an operator to review approximately 20 consequential or uncertain cases instead of manually writing 100 repetitive responses—while maintaining accuracy high enough to earn lasting operational trust.
+The practical ambition is for an operator to review approximately 20 consequential or uncertain cases instead of manually writing 100 repetitive responses, while maintaining accuracy high enough to earn lasting operational trust.
 
 ## The original assumption
 
@@ -50,8 +50,8 @@ For a supported first-contact violation inquiry:
 
 - If a plausible violation number is supplied, the operator can research the company system.
 - If the message is a follow-up or references a prior decision, the operator should review the history.
-- If the case lacks enough information to investigate, code prepares an approved information-request response.
-- If the message is unsupported or extraction is uncertain, the system routes it to human review.
+- If the case lacks enough information to investigate, code prepares an Approved Information Request. The system labels this outcome Template Auto Ready.
+- If the message is unsupported or extraction is uncertain, the system routes it to Human Review.
 
 This is intentionally granular. Its value comes from performing one repetitive operational task consistently and safely.
 
@@ -61,11 +61,11 @@ Even a correct model-generated response can vary from one run to another. In gov
 
 The current workflow uses the model for judgment and code for wording. The response template is approved in advance, and deterministic logic requests only facts that remain missing. If a customer has already supplied usable evidence, the system does not ask for it again.
 
-Consistency is treated as a product feature—not a limitation.
+Consistency is treated as an operational requirement, not a limitation.
 
 ## Architecture evolution
 
-The project evolved from:
+The system architecture evolved from:
 
 ```text
 LLM → Customer response
@@ -106,7 +106,7 @@ The September 2026 evaluation of workflow version 1.3 produced 96.0% route accur
 
 LLMs are easier to use for extraction than to govern as writers.
 
-The project improved when the question changed from:
+The system improved when the question changed from:
 
 > Can the AI write a good response?
 
@@ -116,13 +116,13 @@ to:
 
 That distinction turns AI from an unpredictable author into a bounded component of an operational system.
 
-## Broader product direction
+## Broader direction
 
 Parking is the proving ground, not the destination.
 
-The reusable pattern can support other dedicated intake channels—insurance claims, maintenance requests, billing inquiries, warranty claims, human-resources requests, and similar workflows. Each new application must define its supported scope, required facts, approved templates, escalation conditions, and human authority before implementation begins.
+The reusable pattern can support other dedicated intake channels, including insurance claims, maintenance requests, billing inquiries, warranty claims, human-resources requests, and similar workflows. Each new application must define its supported scope, required facts, approved templates, escalation conditions, and human authority before implementation begins.
 
-The product is being built one highly reliable operational slice at a time.
+The system is being developed one highly reliable operational slice at a time.
 
 ## Current priorities
 
@@ -138,4 +138,4 @@ The product is being built one highly reliable operational slice at a time.
 
 The strongest operational AI systems do not ask the model to replace the decision-maker. They use the model to prepare and organize information while code and people retain authority.
 
-My Office Intern is an experiment in making that balance measurable, reusable, and trustworthy.
+My Office Intern is a working prototype that makes this balance measurable, reusable, and trustworthy.
