@@ -2,17 +2,17 @@
 
 ## An evaluation-backed governed AI operations system
 
-My Office Intern is a working prototype designed to reduce repetitive email handling without giving AI authority to make business decisions or freely write customer responses.
+My Office Intern is a working prototype and evaluation environment designed to reduce repetitive email handling without giving AI authority to make business decisions or freely write customer responses.
 
-It reads inconsistent customer messages, identifies what information is present or missing, prepares an approved information request only when automation is safe, and routes everything requiring investigation or judgment to a person.
+It reads inconsistent customer messages, identifies what information is present or missing, prepares an Approved Information Request only when automation is safe, and routes everything requiring investigation or judgment to a person.
 
 Parking management is the first proving ground. The underlying workflow is intended for other high-volume intake operations that need the efficiency of AI without unpredictable customer communication.
 
 ### Verified 100-email regression milestone
 
-- **96 of 100** emails were sent to the correct workflow.
-- **100% precision** among emails approved for an automated response.
-- **Zero** cases requiring human review were incorrectly approved for automation.
+- **96 of 100** emails were routed to the correct workflow.
+- **100% auto-ready precision:** every email approved for an information-request template matched the operations-owned answer key.
+- **Zero false automations:** no Human Review case was incorrectly approved for automation.
 
 This is a controlled regression result, not a production-performance claim.
 
@@ -21,14 +21,14 @@ This is a controlled regression result, not a production-performance claim.
 | Responsibility | What happens |
 |---|---|
 | AI understands | Interprets inconsistent language and extracts evidence-backed information |
-| Rules control | Validate the extraction, determine what may be automated, and select approved wording |
+| Rules control | Validates the extraction, determines what may be automated, and selects approved wording |
 | People decide | Investigate company records, exercise judgment, and make consequential decisions |
 
 In plain terms: **AI understands. Rules verify and control. People investigate and decide.**
 
 ### A simple example
 
-If a first-contact email does not provide enough information to locate and investigate the matter, the system prepares an approved response requesting only the missing information. If the message is research-ready, uncertain, part of an existing interaction, or outside the supported workflow, it goes to Human Review.
+If a first-contact email does not provide enough information to locate and investigate the matter, the system prepares an Approved Information Request containing only the missing information. If the message is research-ready, uncertain, part of an existing interaction, or outside the supported workflow, it goes to Human Review.
 
 ## Current operational slice
 
@@ -60,7 +60,7 @@ flowchart TD
 
 ## Governed outcomes
 
-### Approved information request
+### Approved Information Request
 
 The system labels this outcome **Template Auto Ready**. It is used for supported first-contact cases that lack enough information for an operator to investigate. Code assembles a pre-approved response and requests only information that has not already been supplied.
 
@@ -75,7 +75,7 @@ Used whenever an operator should retain the case: enough information exists for 
 - It does not waive fees, approve appeals, or resolve disputes.
 - It does not allow emotional or legal language alone to dictate routing.
 - It does not ask customers for evidence they already supplied.
-- It does not allow the model to freely compose automatic customer responses.
+- It does not allow the model to freely compose automated customer responses.
 
 ## Evaluation evidence
 
@@ -108,11 +108,11 @@ The same architecture can support narrowly defined intake workflows such as:
 - Human-resources service requests
 - Property-management correspondence
 
-Each organization supplies its own supported use cases, required facts, approved templates, escalation rules, and human decision boundaries. The reusable product is the governed workflow, not a universal AI reply generator.
+Each organization supplies its own supported use cases, required facts, approved templates, escalation rules, and human decision boundaries. The reusable value lies in the governed workflow, not a universal AI reply generator.
 
-## Product status
+## Current status
 
-The project is currently a working local prototype and evaluation environment. Current work focuses on:
+My Office Intern is currently a working local prototype and evaluation environment. Current work focuses on:
 
 - Preserving zero false auto-ready outcomes
 - Testing repeatability and performance on fresh email collections
