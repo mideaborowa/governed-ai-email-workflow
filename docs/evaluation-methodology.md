@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Evaluation is treated as part of the product architecture. The goal is not simply to measure whether a model produced plausible text; it is to determine whether the complete governed workflow behaves safely, consistently, and usefully.
+Evaluation is treated as part of the system architecture. The goal is not simply to measure whether a model produced plausible text; it is to determine whether the complete governed workflow behaves safely, consistently, and usefully.
 
 ## Unit of evaluation
 
@@ -14,7 +14,7 @@ Each case contains an anonymized customer email and an expected set of operation
 - Evidence supplied
 - Missing information
 - Expected operational handling
-- Expected automatic-template eligibility
+- Expected Approved Information Request eligibility
 
 The expected labels should ultimately be approved by an owner of the real operational process.
 
@@ -30,7 +30,7 @@ This is intentionally strict. A case with a correct route but an incorrect evide
 
 The percentage of cases routed to the expected operational handling:
 
-- Template Auto Ready
+- Approved Information Request (system label: Template Auto Ready)
 - Human Review
 
 The interface may distinguish between review cases with or without an AI-prepared operator brief. That distinction can be useful to the operator, but it is not a separate pass-or-fail routing label in the current evaluation.
@@ -41,17 +41,17 @@ Accuracy across the individual structured fields used by deterministic routing.
 
 ### Auto-ready precision
 
-Of all cases declared eligible for an automatic approved template, the percentage that were genuinely eligible.
+Of all cases declared eligible for an Approved Information Request, the percentage that were genuinely eligible.
 
-This is one of the most important safety metrics because a false automatic response can create a customer-facing error.
+This is one of the most important safety metrics because a false auto-ready outcome can create a customer-facing error.
 
 ### Eligible automation coverage
 
-Of all cases that were genuinely eligible for the approved template, the percentage the system successfully automated.
+Of all cases that were genuinely eligible for an Approved Information Request, the percentage the system successfully classified as Template Auto Ready.
 
 ### False auto-ready count
 
-The number of cases that received an automatic-ready outcome when they should have remained under human control.
+The number of cases that received a Template Auto Ready outcome when they should have remained under human control.
 
 The target is zero.
 
@@ -73,7 +73,7 @@ Evaluation progresses through increasingly realistic stages:
 4. Larger anonymized operational datasets
 5. Adversarial and ambiguous inputs
 6. Operations-owner label review
-7. Shadow-mode deployment with no automatic sending
+7. Shadow-mode deployment with no automated sending
 8. Narrow production pilot with monitoring and rollback controls
 
 ## Current regression evaluation
