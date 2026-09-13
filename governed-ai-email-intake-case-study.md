@@ -6,6 +6,10 @@
 
 Updated September 2026
 
+This is an operations-led build. It began with a recurring workplace problem,
+not with a search for somewhere to use AI: employees spend substantial time
+reading inconsistent requests and repeatedly sending the same first response.
+
 ## The business problem
 
 Many companies rely on a dedicated email address for a specific operational issue. An employee scans each message, determines what the customer needs, checks whether enough information is available, and often pastes a nearly identical first response.
@@ -116,6 +120,24 @@ to:
 
 That distinction turns AI from an unpredictable author into a bounded component of an operational system.
 
+## Why this work is worth sharing
+
+The significance is not a claim that email automation is new. It is the attempt
+to make a narrow form of automation dependable enough for real operational
+trust.
+
+My professional background is in operations rather than corporate technology.
+That led me to treat accuracy, consistency, exception handling, operator control,
+and measurable evidence as product requirements from the beginning. The result
+is not merely a concept or a generated demonstration: it is a working prototype
+with repeatable evaluation, documented failure modes, and explicit limits on AI
+authority.
+
+The project also demonstrates what becomes possible when people closest to an
+operational problem can use modern AI and software tools to test their own
+solutions. Domain judgment still matters. Tools expand who can turn that
+judgment into a working, measurable system.
+
 ## Broader direction
 
 Parking is the proving ground, not the destination.
@@ -139,3 +161,7 @@ The system is being developed one highly reliable operational slice at a time.
 The strongest operational AI systems do not ask the model to replace the decision-maker. They use the model to prepare and organize information while code and people retain authority.
 
 My Office Intern is a working prototype that makes this balance measurable, reusable, and trustworthy.
+
+Thoughtful conversations about governed operational AI, potential pilots,
+collaboration, or relevant professional opportunities are welcome through
+[LinkedIn](https://www.linkedin.com/in/mideaborowa/).
