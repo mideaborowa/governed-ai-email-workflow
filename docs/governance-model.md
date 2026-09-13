@@ -4,7 +4,7 @@
 
 The system separates probabilistic understanding from operational authority.
 
-The LLM may observe, extract, summarize, and classify. Deterministic code decides whether an approved response is eligible. Human operators investigate external systems and make consequential decisions.
+The AI model (LLM) may observe, extract, summarize, and classify. Deterministic code decides whether an approved response is eligible. Human operators investigate external systems and make consequential decisions.
 
 ## Responsibility boundaries
 
@@ -20,7 +20,7 @@ The LLM may observe, extract, summarize, and classify. Deterministic code decide
 
 ## Routing outcomes
 
-### Template Auto Ready
+### Approved Information Request (Template Auto Ready)
 
 The message belongs to the supported workflow, appears to be a first contact, lacks enough information for investigation, and passes deterministic safety checks. Code constructs the response using approved language and requests only missing information.
 
