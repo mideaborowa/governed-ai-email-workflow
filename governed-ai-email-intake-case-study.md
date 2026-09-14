@@ -115,9 +115,15 @@ unnecessary Human Review routes.
 That result was valuable precisely because it was imperfect. The broader set
 revealed a new failure layer that the smaller regression milestone did not. The
 five false-auto cases were treated as safety failures and used to refine the
-next workflow version. Version 1.15 has not yet received a full 300-case rerun,
-so the result is reported as a dated evaluation milestone, not as current
-production performance.
+next workflow version.
+
+A subsequent user-started live-model run of version 1.15 against the same 300
+fixed cases verified 99.0% route accuracy, 100.0% auto-ready precision, 98.3%
+eligible automation coverage, zero false auto-ready outcomes, three
+unnecessary Human Review routes, and zero processing failures. All five
+previously observed false-auto cases moved to Human Review without creating a
+new false automation. This remains a fixed-set evaluation, not a production or
+unseen-traffic performance claim.
 
 ## The most important lesson
 

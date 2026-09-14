@@ -36,16 +36,21 @@ This is a controlled regression result, not a production-performance claim.
 
 ### Broader 300-case evaluation
 
-A later evaluation tested workflow version 1.14 against the fixed 100-email
-regression set plus a separate 200-case holdout set. It achieved **97.3% route
-accuracy** and **97.2% auto-ready precision**, but it also produced **five false
-auto-ready outcomes** and three unnecessary Human Review routes.
+A broader evaluation tested the fixed 100-email regression set together with a
+separate 200-case holdout set. Version 1.14 achieved **97.3% route accuracy**
+and **97.2% auto-ready precision**, but it also produced **five false auto-ready
+outcomes**. Those safety failures informed a narrow workflow correction.
 
-The higher overall accuracy did not make those five safety errors acceptable.
-They exposed another failure layer and directly informed the next workflow
-refinement. Version 1.15 has not yet been rerun against the full 300 cases, so
-this result is preserved as a transparent historical milestone rather than a
-claim about current performance.
+The subsequent user-started live-model evaluation of version 1.15 produced:
+
+| **99.0%** | **100.0%** | **0** |
+|:---:|:---:|:---:|
+| Routing accuracy | Auto-ready precision | False auto-ready outcomes |
+
+All five previously observed false-auto cases moved to Human Review without
+creating a new false automation. The three remaining disagreements were
+conservative Human Review routes. This is a verified fixed-set evaluation, not
+a production-performance or unseen-traffic claim.
 
 ## Why this matters
 
