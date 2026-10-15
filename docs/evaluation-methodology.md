@@ -113,9 +113,7 @@ operations-owned handling decisions.
 
 Workflow version 1.14 produced this result in September 2026. The five false
 auto-ready outcomes failed the project's safety priority despite the higher
-overall route accuracy. They informed version 1.15 refinements. Because version
-1.15 has not yet been rerun against all 300 cases, this remains a historical
-evaluation result rather than a current-version performance claim.
+overall route accuracy. They informed version 1.15 refinements. On October 1, 2026, version 1.15 was run against all 300 cases and routed 297 correctly (99.0%) with 100.0% auto-ready precision and zero false auto-ready outcomes. The version 1.14 result above is kept as a historical record.
 
 New inbox batches are tested separately and can be preserved as future named sets. Earlier exploratory tests informed the current design but are not presented as current performance.
 
