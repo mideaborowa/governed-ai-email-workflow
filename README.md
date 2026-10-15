@@ -47,15 +47,15 @@ These are product boundaries, not prompt suggestions.
 
 ## See it work
 
-<!-- demo clip goes here -->
+![The intern drafting a reply to a parking ticket email](docs/demo.gif)
 
-An inbound email arrived with no subject:
+An email arrived with the subject "First 30 minutes free violation??":
 
-> my plates were stolen and someone parked in your lot. here's the police report number. remove the ticket please.
+> I was only dropping off my friend for 15 minutes. Why did I get a $45 ticket? I have time-stamped photos.
 
-The intern drafted a polite template reply asking for the violation number, the exact date and time of the visit, payment confirmation, and any photos or screenshots.
+The intern tagged it Auto Ready and drafted an approved reply asking only for what's missing: the violation number if known, the exact date and time of the visit, any payment confirmation, and any photos or screenshots.
 
-The reply was held as a draft for a person to review and send. A Draft/Auto toggle controls this, and the operator can Copy Draft, Regenerate, or Mark as Sent.
+The reply is a draft. A person reviews it, then copies it, regenerates it or marks it as sent.
 
 [Watch the full demo on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7499106178682048512/)
 
